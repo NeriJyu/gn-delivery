@@ -10,10 +10,12 @@ As informações sobre as rotas e as regras de negócio do projeto podem ser enc
 
 Para executar o projeto, siga as instruções abaixo:
 
-Execute o comando ´yarn install´ para instalar as dependências do projeto.
-Execute o comando ´yarn build´ para compilar o código TypeScript em JavaScript.
-Execute o comando ´cp .env.example .env´ para criar o arquivo de configuração do ambiente.
-Execute o comando ´yarn dev´ para iniciar o servidor local.
+```
+yarn install
+yarn build
+cp .env.example .env
+yarn dev
+```
 
 Certifique-se de ter o Node.js instalado em sua máquina antes de executar esses comandos.
 
