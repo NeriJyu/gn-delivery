@@ -1,0 +1,652 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Tegra Projeto Simulado",
+    "description": "API para venda de produtos de restaurantes delivery",
+    "contact": {
+      "email": "gustavoneri20@hotmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "Local"
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "summary": "Realizar o login no sistema",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "ref": "#/components/schemas/Auth"
+              },
+              "examples": {
+                "auth": {
+                  "value": {
+                    "email": "gustavoneri@hotmail.com",
+                    "password": "ABC123def456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token de login gerado"
+          },
+          "400": {
+            "description": "Email ou senha não informado"
+          },
+          "404": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Encontrar usuários",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "Usuários encontrados"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um usuário no sistema",
+        "tags": ["User"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Rafael Augusto",
+                    "email": "rafaelaugusto@hotmail.com",
+                    "password": "ABC123def456",
+                    "address": "Rua Bento, 26",
+                    "phone": "11923456789"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado"
+          },
+          "400": {
+            "description": "Email, senha ou nome não informado"
+          },
+          "409": {
+            "description": "Email já está em uso"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Encontrar usuário",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário encontrado"
+          },
+          "404": {
+            "description": "Usuário não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar usuário",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "name": "Patrick"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário atualizado"
+          },
+          "400": {
+            "description": "Não foi enviado dados para atualizar usuário"
+          },
+          "404": {
+            "description": "Usuário não existe"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar usuário",
+        "tags": ["User"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado"
+          },
+          "404": {
+            "description": "Usuário não existe"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "Encontrar produtos",
+        "tags": ["Product"],
+        "responses": {
+          "200": {
+            "description": "Produtos encontrados"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um produto no sistema",
+        "tags": ["Product"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "ref": "#/components/schemas/Product"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "name": "Pizza de Marguerita",
+                    "type": "pizza",
+                    "price": 40.0,
+                    "description": "Muçarela, tomate, manjericão, orégano"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Produto criado"
+          },
+          "400": {
+            "description": "Nome, preço ou tipo do produto não informado"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Encontrar produto",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto encontrado"
+          },
+          "404": {
+            "description": "Produto não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar produto",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "price": 38.55
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Produto atualizado"
+          },
+          "400": {
+            "description": "Não foi enviado dados para atualizar produto"
+          },
+          "404": {
+            "description": "Produto não existe"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar produto",
+        "tags": ["Product"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto deletado"
+          },
+          "404": {
+            "description": "Produto não existe"
+          }
+        }
+      }
+    },
+    "/coupons": {
+      "get": {
+        "summary": "Encontrar cupons",
+        "tags": ["Coupon"],
+        "responses": {
+          "200": {
+            "description": "Cupons encontrados"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um cupom no sistema",
+        "tags": ["Coupon"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "ref": "#/components/schemas/Coupon"
+              },
+              "examples": {
+                "coupon": {
+                  "value": {
+                    "name": "ALEGRIA15",
+                    "price": 25,
+                    "percentage": "true",
+                    "maxPrice": 15
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cupom criado"
+          },
+          "400": {
+            "description": "Nome, preço ou se é desconto em porcentagem do cupom não informado"
+          }
+        }
+      }
+    },
+    "/coupons/{id}": {
+      "get": {
+        "summary": "Encontrar cupom",
+        "tags": ["Coupon"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cupom encontrado"
+          },
+          "404": {
+            "description": "Cupom não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar cupom",
+        "tags": ["Coupon"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Coupon"
+              },
+              "examples": {
+                "coupon": {
+                  "value": {
+                    "price": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cupom atualizado"
+          },
+          "400": {
+            "description": "Não foi enviado dados para atualizar cupom"
+          },
+          "404": {
+            "description": "Cupom não existe"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar cupom",
+        "tags": ["Coupon"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cupom deletado"
+          },
+          "404": {
+            "description": "Cupom não existe"
+          }
+        }
+      }
+    },
+    "/deliveries": {
+      "get": {
+        "summary": "Encontrar entregas",
+        "tags": ["Delivery"],
+        "responses": {
+          "200": {
+            "description": "Entregas encontrados"
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar uma entrega no sistema",
+        "description": "Somente é possível utilizar enquanto estiver autenticado, no campo 'items' é um array com os IDs dos produtos que deseja comprar, no campo 'quantity' é um array com a quantidade dos produtos que deseja comprar e o campo 'coupon' se coloca o nome do cupom e será aplicado o desconto",
+        "tags": ["Delivery"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "ref": "#/components/schemas/Delivery"
+              },
+              "examples": {
+                "delivery": {
+                  "value": {
+                    "items": [3, 5, 4, 6],
+                    "quantity": [3, 2, 1, 1],
+                    "coupon": "FELICIDADE10"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Entrega criada"
+          },
+          "400": {
+            "description": "Quantidade ou itens não informado"
+          }
+        }
+      }
+    },
+    "/deliveries/{id}": {
+      "get": {
+        "summary": "Encontrar entrega",
+        "tags": ["Delivery"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entrega encontrada"
+          },
+          "404": {
+            "description": "Entrega não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar entrega",
+        "tags": ["Delivery"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Delivery"
+              },
+              "examples": {
+                "delivery": {
+                  "value": {
+                    "status": "confirmed"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Entrega atualizado"
+          },
+          "400": {
+            "description": "Não foi enviado dados para atualizar entrega"
+          },
+          "404": {
+            "description": "Entrega não existe"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar entrega",
+        "tags": ["Delivery"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Entrega deletada"
+          },
+          "404": {
+            "description": "Entrega não existe"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "email": {
+            "type": "string",
+            "unique": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "number"
+          }
+        },
+        "required": ["id", "email", "password", "name"]
+      },
+      "Delivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "status": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "refused",
+                "awaitingConfirmation",
+                "confirmed",
+                "preparing",
+                "onRoute",
+                "delivered"
+              ]
+            }
+          },
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": ["id", "userId", "status", "value"]
+      },
+      "Coupon": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          },
+          "percentage": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "maxPrice": {
+            "type": "number"
+          }
+        },
+        "required": ["id", "price", "percentage", "name"]
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "type": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["pizza", "dessert", "pastel", "acai", "drink"]
+            }
+          }
+        },
+        "required": ["id", "name", "price", "type"]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
