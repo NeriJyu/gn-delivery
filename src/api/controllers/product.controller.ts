@@ -4,10 +4,10 @@ import { ProductRepository } from "../repositories/product.repository";
 export class ProductController {
   private productRepository = new ProductRepository();
 
-  findProducts(): Promise<I_DataProduct[]> {
+  findProducts(type?: string): Promise<I_DataProduct[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        const products = await this.productRepository.findProducts();
+        const products = await this.productRepository.findProducts(type);
 
         resolve(products);
       } catch (err) {

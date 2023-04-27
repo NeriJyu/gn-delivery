@@ -1,4 +1,3 @@
-import sequelize from "sequelize/types/sequelize";
 import {
   I_DataProduct,
   I_Product,
@@ -7,10 +6,20 @@ import {
 import Product from "../models/product.model";
 
 export class ProductRepository {
-  findProducts(): Promise<I_DataProduct[]> {
+  findProducts(type?: string): Promise<I_DataProduct[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        const products: any = await Product.findAll();
+        let products: any;
+
+        if (type)
+          products = await Product.findAll({
+            order: [["name", "ASC"]],
+            where: { type },
+          });
+        else
+          products = await Product.findAll({
+            order: [["name", "ASC"]],
+          });
 
         resolve(products);
       } catch (err) {

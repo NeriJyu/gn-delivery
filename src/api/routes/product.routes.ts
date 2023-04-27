@@ -8,7 +8,9 @@ const productController = new ProductController();
 
 productRouter.get("/", async (req, res) => {
   try {
-    const products = await productController.findProducts();
+    const type: string = req.query.type as string;
+
+    const products = await productController.findProducts(type);
 
     res.status(200).send({
       status: "SUCCESS",

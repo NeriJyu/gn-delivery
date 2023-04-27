@@ -1,8 +1,8 @@
 {
-  "name": "tegra-projeto-simulado",
+  "name": "gn-delivery",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/NeriJyu/tegra-projeto-simulado.git",
+  "repository": "https://github.com/NeriJyu/gn-delivery.git",
   "author": "Gustavo <gustavoneri20@hotmail.com>",
   "license": "MIT",
   "scripts": {
