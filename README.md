@@ -1,22 +1,23 @@
-# gn-delivery
+# 🛵 gn-delivery
 
-Este é o repositório do projeto "gn-delivery". Ele contém o código fonte do projeto e as informações necessárias para executá-lo localmente.
+This is the repository for the "gn-delivery" project. It contains the source code of the project and the necessary information to run it locally.
 
-## Rotas e documentação
+## Routes and Documentation 📖
 
-As informações sobre as rotas e as regras de negócio do projeto podem ser encontradas na documentação, disponível em http://localhost:3000/api-docs.
+Information about the project's routes and business rules can be found in the documentation, available at http://localhost:3000/api-docs.
 
-## Como executar o projeto
+## How to Run the Project 🚀
 
-Para executar o projeto, siga as instruções abaixo:
+To run the project, follow the instructions below:
 
-```
+```bash
 yarn install
 yarn build
 cp .env.example .env
 yarn dev
 ```
 
-Certifique-se de ter o Node.js instalado em sua máquina antes de executar esses comandos.
+Make sure you have Node.js installed on your machine before running these commands. ✅
 
-Obrigado por utilizar o "gn-delivery"!
+Thank you for using "gn-delivery"! 🙏
+```
